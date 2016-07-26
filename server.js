@@ -11,9 +11,10 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 swig.setDefaults({cache: false});
 
-
+var routes = require('./routes/products.routes.js');
+app.use('/',routes);
 app.get('/', function(req,res,next){
-	console.log('hey baby')
+	console.log('list products')
 	res.render('home', {title: 'Home'});
 });
 
