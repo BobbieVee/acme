@@ -19,5 +19,14 @@ function list(name, description){
 	return _.cloneDeep(products);
 }
 
-module.exports = {list:list};
+function remove(name){
+	console.log('delete function on ', name);
+	products = products.filter(function(product){
+		return (product.name !== name)
+	})
+	console.log(products)
+	
+}
+
+module.exports = {list:list, remove:remove};
 

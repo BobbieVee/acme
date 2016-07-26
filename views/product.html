@@ -1,0 +1,15 @@
+{% extends './layout.html'  %}
+{% block main%}
+	<div class='well'>
+	<ul class='list-group'>
+		{%for product in products%}
+			{%include './_productItem.html' %}
+		
+		{% endfor %}
+	</ul>
+	
+	
+		
+	</div>
+	
+{% endblock %}
