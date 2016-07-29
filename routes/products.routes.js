@@ -1,22 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
-var models = require('../products.model.js');
-var products = models.list();
+var Product = require('../products.model.js');
 
-router.get('/', function(req,res){
-	res.render('home', {title: 'Home'})
+
+router.get('/', function(req, res){
+	res.render('products',{title: 'Products', products: Product.list() });
 });
 
-router.get('/products/', function(req, res){
-	res.render('product',{title: 'Products', products: products})
-})
+router.post('/', function(req, res){
+  Product.add(req.body.name);
+	res.redirect('/products');
+});
 
-router.delete('/products/:name', function(req,res){
-	console.log('Delete =>', req.params.name);
-	models.remove(req.params.name);
-	res.redirect('/products/');
-})
+router.delete('/:id', function(req,res){
+	Product.remove(req.params.id*1);
+	res.redirect('/products');
+});
 
 
 module.exports = router;

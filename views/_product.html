@@ -1,0 +1,7 @@
+<li class='list-group-item'>
+	{{product.name}} :   {{product.description}}
+	<br>
+	<form method='POST' action='/products/{{product.id}}?_method=DELETE'>
+		<button type='submit' class='btn btn-danger'>Delete</button>
+	</form>
+</li>

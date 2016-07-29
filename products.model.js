@@ -1,32 +1,50 @@
-var _ = require('lodash');
-
-var products = [
+var _products = [
 	{
+    id: 1,
 		name: "Cervelo Bicycle",
 		description: "Aerodynamic Time Trial Bicycle"
 	},
 	{
+    id: 3,
 		name: "Altra Shoes",
 		description: "Zero-drop running shoes"	
 	},
 	{
+    id: 5,
 		name: "Speedo Swim Goggles",
 		description: "Same type that Michael Phelps wears"
 	}
 ];
 
-function list(name, description){
-	return _.cloneDeep(products);
+function list(){
+  return _products;
 }
 
-function remove(name){
-	console.log('delete function on ', name);
-	products = products.filter(function(product){
-		return (product.name !== name)
-	})
-	console.log(products)
-	
+function remove(id){
+  var idx = this.list().indexOf(this.get(id));
+  this.list().splice(idx, 1);
 }
 
-module.exports = {list:list, remove:remove};
+function get(id){
+  return this.list().filter(function(product){
+    return product.id === id;
+  })[0];
+}
+
+function add(name){
+  var max = this.list().reduce(function(max, product){
+    if(product.id > max)
+      max = product.id;
+    return max;
+  }, 0);
+  this.list().push({ id: max, name: name });
+
+}
+
+module.exports = {
+  get: get,
+  list: list,
+  remove: remove,
+  add: add 
+};
 

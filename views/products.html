@@ -1,0 +1,17 @@
+{% extends './layout.html'  %}
+{% block main%}
+  <div class='well'>
+    <form method='POST' action='/products'>
+      <div class='form-group'>
+        <label>Name</label>
+        <input class='form-control' name='name' />
+      </div>
+      <button type='submit' class='btn btn-primary'>Create Product</button>
+    </form>
+  </div>
+	<ul class='list-group'>
+		{%for product in products%}
+			{%include './_product.html' %}
+		{% endfor %}
+	</ul>
+{% endblock %}
